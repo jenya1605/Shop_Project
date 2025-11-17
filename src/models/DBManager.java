@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /*
@@ -19,6 +20,30 @@ import java.util.ArrayList;
 public class DBManager {
 private final String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
     private final String connectionString = "jdbc:ucanaccess://Data\\ShopDB.accdb";
+    
+    
+    //Method Write Order to Database
+    
+public void writeOrder(Order o, String customerUsername)
+    {
+        String sql ="INSERT INTO Orders(OrderDate,Username,OrderTotal,Status) VALUES (?,?,?,?)";
+        try (Connection conn = DriverManager.getConnection(connectionString);
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            Class.forName(driver);
+            pstmt.setString(1, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(o.getOrderDate()));
+            pstmt.setString(2, customerUsername);
+            pstmt.setDouble(3, o.getOrderTotal());
+            pstmt.setString(4, o.getStatus());
+            
+            pstmt.executeUpdate();
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error writing Order: " + ex.getMessage());
+        }
+    }    
+    
     
     public ArrayList<Customer> loadCustomers()
     {

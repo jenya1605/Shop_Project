@@ -4,18 +4,25 @@
  */
 package views;
 
+import models.Customer;
+
 /**
  *
  * @author 30471297
  */
 public class Confirmation extends javax.swing.JPanel {
-
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Confirmation.class.getName());    
+    private Customer loggedInCustomer;// fix imports
     /**
      * Creates new form Confirmation
      */
-    public Confirmation() {
+    public Confirmation(Customer c) {
+        loggedInCustomer = c;
         initComponents();
+        
     }
+    
+    //lblOrderPlaced.setText("Order Placed!");   
 
     /**
      * This method is called from within the constructor to initialize the form.

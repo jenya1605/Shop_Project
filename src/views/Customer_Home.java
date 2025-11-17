@@ -4,7 +4,7 @@
  */
 package views;
 
-import views.MainMenu;
+import models.Order;
 
 /**
  *
@@ -39,6 +39,11 @@ public class Customer_Home extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBrowseProducts.setText("Browse Products");
+        btnBrowseProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrowseProductsActionPerformed(evt);
+            }
+        });
 
         btnViewMyProducts.setText("View My Products");
         btnViewMyProducts.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +108,28 @@ public class Customer_Home extends javax.swing.JFrame {
     mMenu.setVisible(true);
     this.setVisible(false);      
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnBrowseProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseProductsActionPerformed
+    Order currentOrder = new Order();// fix imports
+    ShopForCustomers sShopForCustomers = new ShopForCustomers();
+    sShopForCustomers.setVisible(true);
+    this.setVisible(false);
+//    
+//    
+//        String selectedCategory = lstCategory.getSelectedValue();
+//        
+//        DefaultListModel ProductModel = new DefaultListModel();
+//        
+//        for(Product a : allProducts)
+//        {
+//            //package.class
+//            if(a.getClass().getName().equals("models." + selectedCategory))
+//            {
+//               ProductModel.addElement(a); 
+//            }
+//        }
+//        lstProduct.setModel(ProductModel);
+    }//GEN-LAST:event_btnBrowseProductsActionPerformed
 
     /**
      * @param args the command line arguments

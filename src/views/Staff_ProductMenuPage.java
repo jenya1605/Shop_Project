@@ -5,8 +5,10 @@
 package views;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import models.DBManager;
 import models.Product;
+//import views.Staff_Home;
 
 /**
  *
@@ -41,7 +43,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstSelectCategory = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lstCategory = new javax.swing.JList<>();
+        lstProduct = new javax.swing.JList<>();
         btnEditProduct = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         btnReturnToStaffHome = new javax.swing.JButton();
@@ -59,14 +61,19 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(lstSelectCategory);
-
-        lstCategory.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        lstSelectCategory.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstCategoryValueChanged(evt);
+                lstSelectCategoryValueChanged(evt);
             }
         });
-        jScrollPane2.setViewportView(lstCategory);
+        jScrollPane1.setViewportView(lstSelectCategory);
+
+        lstProduct.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstProductValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(lstProduct);
 
         btnEditProduct.setText("Edit Product");
         btnEditProduct.addActionListener(new java.awt.event.ActionListener() {
@@ -151,16 +158,47 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnToStaffHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToStaffHomeActionPerformed
-        // TODO add your handling code here:
+        Staff_Home sHome = new Staff_Home();// stage 6
+        sHome.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnReturnToStaffHomeActionPerformed
 
     private void btnEditProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProductActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditProductActionPerformed
 
-    private void lstCategoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCategoryValueChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lstCategoryValueChanged
+    private void lstProductValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstProductValueChanged
+//    String selectedCategory = lstProduct.getSelectedValue();
+//        
+//        DefaultListModel ProductModel = new DefaultListModel();
+//        
+//        for(Product a : allProducts)
+//        {
+//            //package.class
+//            if(a.getClass().getName().equals("models." + selectedCategory))
+//            {
+//               ProductModel.addElement(a); 
+//            }
+//        }
+//        lstProduct.setModel(ProductModel);
+    }//GEN-LAST:event_lstProductValueChanged
+
+    private void lstSelectCategoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstSelectCategoryValueChanged
+    String selectedCategory = lstSelectCategory.getSelectedValue();
+        
+        DefaultListModel categoryModel = new DefaultListModel();
+        
+        for(Product p : allProducts)
+        {
+            //package.class
+            if(p.getClass().getName().equals("models." + selectedCategory))
+            {
+               categoryModel.addElement(p); 
+            }
+        }
+        lstProduct.setModel(categoryModel);
+          
+    }//GEN-LAST:event_lstSelectCategoryValueChanged
 
     /**
      * @param args the command line arguments
@@ -184,7 +222,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Staff_ProductMenuPage().setVisible(true));
+        //java.awt.EventQueue.invokeLater(() -> new Staff_ProductMenuPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -196,17 +234,10 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> lstCategory;
+    private javax.swing.JList<String> lstProduct;
     private javax.swing.JList<String> lstSelectCategory;
     // End of variables declaration//GEN-END:variables
 }
 
-//private void lstCategoryValueChanged(javax.swing.event.ListSelectionEvent evt) {
-//       
-//        String selectCategory = lstCategory.getSelectedValue();
-//
-//        DefaultListModel categoryModel = new DefaultListModel();
-//        
-//
-//}
+
 

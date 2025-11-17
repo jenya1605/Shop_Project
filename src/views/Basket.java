@@ -4,6 +4,13 @@
  */
 package views;
 
+import java.util.Map;
+import javax.swing.table.DefaultTableModel;
+import models.Customer;
+import models.DBManager;
+import models.Order;
+import models.OrderLine;
+
 /**
  *
  * @author 30471297
@@ -11,13 +18,40 @@ package views;
 public class Basket extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Basket.class.getName());
-
+    
+    private Order currentOrder; // fix import
+    private Customer loggedInCustomer; // fix import
     /**
-     * Creates new form Bascket
+     * Creates new form Basket
      */
-    public Basket() {
+
+            
+    public Basket(Customer c, Order o) // fix import
+    {
+        loggedInCustomer = c;
+        currentOrder = o;
+        
         initComponents();
+        
+        DefaultTableModel productBasketModel = (DefaultTableModel)tblProductBasket.getModel();
+    for(Map.Entry<Integer,OrderLine> olMapEntry : currentOrder.getOrderLines().entrySet())// fix imports
+      {
+        OrderLine actualOrderLine = olMapEntry.getValue();//put into the table in a list first
+        productBasketModel.addRow(new Object[]
+        {
+                // 
+                actualOrderLine.getProduct().getProductId(),
+                actualOrderLine.getProduct().getProductName() + " £" ,
+                actualOrderLine.getProduct().getPrice(),
+                actualOrderLine.getQuantity()//
+                  // create getQuantity() method
+        } );
+        tblProductBasket.setModel(productBasketModel);
+
+      }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,13 +63,18 @@ public class Basket extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProductBascket = new javax.swing.JTable();
+        tblProductBasket = new javax.swing.JTable();
         btnAddMoreProducts = new javax.swing.JButton();
         btnBuyProduct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                formComponentHidden(evt);
+            }
+        });
 
-        tblProductBascket.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductBasket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -50,7 +89,7 @@ public class Basket extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -61,7 +100,7 @@ public class Basket extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblProductBascket);
+        jScrollPane1.setViewportView(tblProductBasket);
 
         btnAddMoreProducts.setText("Add More Products");
         btnAddMoreProducts.addActionListener(new java.awt.event.ActionListener() {
@@ -102,9 +141,18 @@ public class Basket extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnAddMoreProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMoreProductsActionPerformed
-        // TODO add your handling code here:
+        DBManager db = new DBManager();//fix imports
+        db.writeOrder(currentOrder,loggedInCustomer.getUsername());
+        Confirmation conf = new Confirmation(loggedInCustomer);
+        conf.setVisible(true);
+        this.setVisible(false);        
     }//GEN-LAST:event_btnAddMoreProductsActionPerformed
+
+    private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formComponentHidden
 
     /**
      * @param args the command line arguments
@@ -126,15 +174,21 @@ public class Basket extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Basket().setVisible(true));
+        //java.awt.EventQueue.invokeLater(() -> new Basket(currentOrder).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMoreProducts;
     private javax.swing.JButton btnBuyProduct;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblProductBascket;
+    private javax.swing.JTable tblProductBasket;
     // End of variables declaration//GEN-END:variables
 }
