@@ -4,6 +4,7 @@
  */
 package views;
 
+import models.Customer;
 import models.Order;
 
 /**
@@ -17,8 +18,14 @@ public class Customer_Home extends javax.swing.JFrame {
     /**
      * Creates new form CustomerHome
      */
-    public Customer_Home() {
+    
+    private final Customer loggedInCustomer;
+    
+    public Customer_Home(Customer customer) { // stage 8
+        this.loggedInCustomer = customer;
         initComponents();
+        
+        lblWelcome.setText("Welcome, " + loggedInCustomer.getLastname() );
     }
 
     /**
@@ -35,6 +42,7 @@ public class Customer_Home extends javax.swing.JFrame {
         btnEditDetails = new javax.swing.JButton();
         btnUnregister = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        lblWelcome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,33 +71,43 @@ public class Customer_Home extends javax.swing.JFrame {
             }
         });
 
+        lblWelcome.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUnregister)
-                    .addComponent(btnEditDetails)
-                    .addComponent(btnViewMyProducts)
-                    .addComponent(btnBrowseProducts))
-                .addContainerGap(122, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnUnregister)
+                            .addComponent(btnEditDetails)
+                            .addComponent(btnViewMyProducts)
+                            .addComponent(btnBrowseProducts))
+                        .addGap(0, 116, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(37, 37, 37)
+                .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(btnBrowseProducts)
                 .addGap(40, 40, 40)
                 .addComponent(btnViewMyProducts)
                 .addGap(48, 48, 48)
                 .addComponent(btnEditDetails)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(btnUnregister)
                 .addGap(28, 28, 28)
                 .addComponent(btnLogout)
@@ -111,8 +129,10 @@ public class Customer_Home extends javax.swing.JFrame {
 
     private void btnBrowseProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseProductsActionPerformed
     Order currentOrder = new Order();// fix imports
-    ShopForCustomers sShopForCustomers = new ShopForCustomers();
+    ShopForCustomers sShopForCustomers = new ShopForCustomers(loggedInCustomer, currentOrder);
+    
     sShopForCustomers.setVisible(true);
+  
     this.setVisible(false);
 //    
 //    
@@ -153,7 +173,7 @@ public class Customer_Home extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Customer_Home().setVisible(true));
+      //  java.awt.EventQueue.invokeLater(() -> new Customer_Home().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -162,5 +182,6 @@ public class Customer_Home extends javax.swing.JFrame {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnUnregister;
     private javax.swing.JButton btnViewMyProducts;
+    private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
 }

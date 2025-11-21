@@ -110,6 +110,11 @@ public class Basket extends javax.swing.JFrame {
         });
 
         btnBuyProduct.setText("Buy Your Product");
+        btnBuyProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuyProductActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,16 +148,20 @@ public class Basket extends javax.swing.JFrame {
 
     
     private void btnAddMoreProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMoreProductsActionPerformed
-        DBManager db = new DBManager();//fix imports
-        db.writeOrder(currentOrder,loggedInCustomer.getUsername());
-        Confirmation conf = new Confirmation(loggedInCustomer);
-        conf.setVisible(true);
-        this.setVisible(false);        
+     
     }//GEN-LAST:event_btnAddMoreProductsActionPerformed
 
     private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
         // TODO add your handling code here:
     }//GEN-LAST:event_formComponentHidden
+
+    private void btnBuyProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyProductActionPerformed
+        DBManager db = new DBManager();//fix imports
+        db.writeOrder(currentOrder,loggedInCustomer.getUsername());
+        Confirmation conf = new Confirmation(loggedInCustomer);
+        conf.setVisible(true);
+        this.setVisible(false);   
+    }//GEN-LAST:event_btnBuyProductActionPerformed
 
     /**
      * @param args the command line arguments

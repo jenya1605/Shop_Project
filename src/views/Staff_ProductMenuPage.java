@@ -83,6 +83,11 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         });
 
         jButton2.setText("Delete Product");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         btnReturnToStaffHome.setText("Return To Staff Home");
         btnReturnToStaffHome.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +204,10 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         lstProduct.setModel(categoryModel);
           
     }//GEN-LAST:event_lstSelectCategoryValueChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

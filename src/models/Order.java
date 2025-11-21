@@ -3,6 +3,7 @@ package models;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 
 /*
@@ -87,6 +88,8 @@ public class Order {
         orderLines = orderLinesIn;
     }  
     
+   
+    
     
      
     //Constructor 0 input parameters
@@ -109,4 +112,21 @@ public class Order {
         orderLines = new HashMap();        
     }
     
+    //stage 8
+    //A new method within your Order class 
+    //which will calculate the order total by combining the line totals for all OrderLines in your order 
+    public void calculateOrderTotal()
+    {
+        orderTotal = 0; // order total to 0
+        for (Map.Entry<Integer,OrderLine> olMapEntry : orderLines.entrySet())// fix import
+        {{
+            OrderLine actualOrderLine = olMapEntry.getValue();
+            //add the line total to the overall
+            orderTotal = orderTotal + actualOrderLine.getLineTotal();
+            
+        }}
+    }
+    
 }
+
+

@@ -136,15 +136,15 @@ public class Customer_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnToMainMenuActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    
     String username = txtUsername.getText();
     String password = txtPassword.getText();
     
     DBManager db = new DBManager();
-    Customer loggedInCustomer;
-        loggedInCustomer = db.customerLogin(username, password);
+    Customer loggedInCustomer = db.customerLogin(username, password);
     
     if(loggedInCustomer !=null){
-        Customer_Home cHome = new Customer_Home();
+        Customer_Home cHome = new Customer_Home(loggedInCustomer);
         cHome.setVisible(true);
         this.setVisible(false);
     }

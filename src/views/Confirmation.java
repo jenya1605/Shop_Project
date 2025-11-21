@@ -73,7 +73,7 @@ public class Confirmation extends javax.swing.JPanel {
     private void btnReturnToCustomerHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToCustomerHomeActionPerformed
         // Assessment 8
         //Customer_Home chome = new Customer_Home(loggedInCustomer);
-        Customer_Home chome = new Customer_Home();
+        Customer_Home chome = new Customer_Home(loggedInCustomer);
         chome.setVisible(true);   
         this.setVisible(false);
     }//GEN-LAST:event_btnReturnToCustomerHomeActionPerformed

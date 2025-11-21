@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+//import java.sql.PreparedStatement;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -22,21 +24,25 @@ private final String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
     private final String connectionString = "jdbc:ucanaccess://Data\\ShopDB.accdb";
     
     
-    //Method Write Order to Database
+    //Method Write Order to Database - Stage 8
     
+//public void writeOrder(Order o)
 public void writeOrder(Order o, String customerUsername)
     {
-        String sql ="INSERT INTO Orders(OrderDate,Username,OrderTotal,Status) VALUES (?,?,?,?)";
-        try (Connection conn = DriverManager.getConnection(connectionString);
-             PreparedStatement pstmt = conn.prepareStatement(sql))
+     try
         {
             Class.forName(driver);
-            pstmt.setString(1, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(o.getOrderDate()));
-            pstmt.setString(2, customerUsername);
-            pstmt.setDouble(3, o.getOrderTotal());
-            pstmt.setString(4, o.getStatus());
+            Connection conn = DriverManager.getConnection(connectionString);
+            Statement stmt = conn.createStatement();
             
-            pstmt.executeUpdate();
+        stmt.executeUpdate("INSERT INTO Orders (OrderDate,Username,OrderTotal,Status)" +
+                    " Values ("
+                    + "'" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(o.getOrderDate()) + "',"  // create in order class
+                    + "'" + customerUsername + "',"           
+                    + "'" + o.getOrderTotal() + "'," // create in order class
+                    + "'" + o.getStatus() + "'"     // create in order class
+                    + ")");        
+        
         }
         catch(Exception ex)
         {

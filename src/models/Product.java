@@ -73,7 +73,7 @@ public class Product {
         return price;
     }
     
-    public int stockLevel()
+    public int getStockLevel()
     {
         return stockLevel;
     }
@@ -95,14 +95,7 @@ public class Product {
     {
         this.stockLevel = stockLevel;
     }
-    
-    public boolean getIsAvailable() {
-    
-       throw new UnsupportedOperationException("Not supported yet"); 
-    //GeneratedMethodBody;
-    }    
-            
-    
-    
+      
+      
 }
 

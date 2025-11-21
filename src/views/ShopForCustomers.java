@@ -4,10 +4,13 @@
  */
 package views;
 
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import models.Customer;
 import models.DBManager;
 import models.Order;
+import models.OrderLine;
 import models.Product;
 
 /**
@@ -15,17 +18,19 @@ import models.Product;
  * @author 30471297
  */
 public class ShopForCustomers extends javax.swing.JFrame {
+    
     private ArrayList<Product> allProducts;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ShopForCustomers.class.getName());
 
     
     private Order currentOrder; //fix import
+    private Customer loggedInCustomer; //fix import
     
     /**
      * Creates new form ShopForCustomers
      */
-    public ShopForCustomers() {
-        
+    public ShopForCustomers(Customer c, Order o) {
+        loggedInCustomer = c;
         currentOrder = new Order();
         
         DBManager db = new DBManager();
@@ -57,6 +62,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
         lstProduct = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
+        lblInformation = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -118,36 +124,37 @@ public class ShopForCustomers extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblProducts)
-                .addGap(18, 18, 18)
-                .addComponent(btnViewBasket)
-                .addGap(60, 60, 60))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(42, 42, 42)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(68, 68, 68)
-                                .addComponent(btnAddToBasket)
-                                .addGap(0, 30, Short.MAX_VALUE))
+                            .addComponent(lblInformation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnBack)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(71, 71, 71))
-                    .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblProducts)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnViewBasket)))
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(lblCategory)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblProduct)
-                        .addGap(155, 155, 155))))
+                        .addGap(155, 155, 155))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(43, 43, 43)
+                        .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAddToBasket)
+                        .addGap(45, 45, 45))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,17 +172,19 @@ public class ShopForCustomers extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addComponent(lblInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(15, 15, 15))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(btnAddToBasket)
-                        .addGap(14, 14, 14))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
 
         pack();
@@ -187,41 +196,42 @@ public class ShopForCustomers extends javax.swing.JFrame {
 
     private void btnAddToBasketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToBasketActionPerformed
         
-//        if(lstProduct.getSelectedIndex() != -1)
-//        {
-//           lblOrderPlaced.setText("Select Product, Please");
-//           return;
-//        }
-//        
-//        String quantity = txtQuantity.getText();
-//        if (quantity.isEmpty())
-//        {
-//            lblOrderPlaced.setText("Please enter  Quantity");
-//            return; 
-//        }   
+      if(lstProduct.getSelectedIndex() == -1)
+       {
+           lblInformation.setText("Select Product, Please");
+           return;
+       }
         
-//        {
-//            Object selectedProductObject = (Object)lstProduct.getSelectedValue();
-//            Product selectedProduct = (Product)selectedProductObject;
-//            
-//            if(selectedProduct.getIsAvailable() == true)
-//            {
-//                //Create OrderLine 
-//                OrderLine ol = new OrderLine(selectedProduct);
-//           
-//                currentOrder.addOrderLine(ol);
-//                lblOrderPlaced.setText("Product Is Added to Basket");
-//            }
-//            else
-//            {
-//                lblOrderPlaced.setText("Sorry- Product is NOT Available");
-//            }
-//        }
-//        else
-//        {
-//            lblOrderPlaced.setText("Error: Select Product First");
-//        }
+       String quantity = txtQuantity.getText();
+
+        if (quantity.isEmpty())
+      {
+           lblInformation.setText("Please enter Quantity");
+           return; 
+      }   
+             //create a variable q
+       int q = parseInt(quantity);
         
+            Object selectedProductObject = (Object)lstProduct.getSelectedValue();
+            Product selectedProduct = (Product)selectedProductObject;
+            
+            int availability = selectedProduct.getStockLevel();
+            
+            
+            if(availability >= q == true)
+            {
+                //Create OrderLine 
+                OrderLine ol = new OrderLine(selectedProduct,q);//qantity
+           
+                currentOrder.addOrderLine(ol);
+                lblInformation.setText("Product Added to Basket");
+            }
+            else
+            {
+                lblInformation.setText("Product is NOT Available");
+            }
+        
+          
     }//GEN-LAST:event_btnAddToBasketActionPerformed
 
     private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
@@ -245,9 +255,9 @@ public class ShopForCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_lstCategoryValueChanged
 
     private void btnViewBasketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBasketActionPerformed
-//        Basket b = new Basket(loggedInCustomer,currentOrder);
-//        b.setVisible(true);
-//        this.setVisible(false);
+        Basket b = new Basket(loggedInCustomer, currentOrder);
+        b.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnViewBasketActionPerformed
 
     /**
@@ -272,7 +282,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ShopForCustomers().setVisible(true));
+  //      java.awt.EventQueue.invokeLater(() -> new ShopForCustomers().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -285,6 +295,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblCategory;
+    private javax.swing.JLabel lblInformation;
     private javax.swing.JLabel lblProduct;
     private javax.swing.JLabel lblProducts;
     private javax.swing.JList<String> lstCategory;
