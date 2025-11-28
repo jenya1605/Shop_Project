@@ -57,14 +57,14 @@ public class Confirmation extends javax.swing.JPanel {
                         .addGap(107, 107, 107))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblOrderPlaced)
-                        .addGap(179, 179, 179))))
+                        .addGap(158, 158, 158))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
+                .addContainerGap(106, Short.MAX_VALUE)
                 .addComponent(lblOrderPlaced)
-                .addGap(60, 60, 60)
+                .addGap(68, 68, 68)
                 .addComponent(btnReturnToCustomerHome)
                 .addGap(87, 87, 87))
         );

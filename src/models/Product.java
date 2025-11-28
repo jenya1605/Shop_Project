@@ -17,6 +17,7 @@ public class Product {
     private String productName;
     private double price;
     private int stockLevel;
+    private String additional;
     
     @Override
     //stage 6
@@ -77,6 +78,12 @@ public class Product {
     {
         return stockLevel;
     }
+    
+    public String getAdditional()
+    {
+        return additional;
+    }
+    
     //Setter methods for all attributes
 
     public void setProductId(int productId)
@@ -94,6 +101,11 @@ public class Product {
     public void setStockLevel(int stockLevel)
     {
         this.stockLevel = stockLevel;
+    }
+    
+    public void setAdditional(String additional)
+    {
+        this.additional = additional;
     }
       
       

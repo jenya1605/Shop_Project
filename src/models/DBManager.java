@@ -24,6 +24,64 @@ private final String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
     private final String connectionString = "jdbc:ucanaccess://Data\\ShopDB.accdb";
     
     
+     public void editProduct(Product p)
+    {
+        String additionalAttributeSQL = "";
+        if(p.getClass().getName().equals("models.HeatPump"))//   copy from EditProductDetails  if(productToEdit.getClass().getName().equals("models.HeatPump"))
+        {
+          HeatPump h = (HeatPump)p;  
+          additionalAttributeSQL = "EfficiencyRating = '" +h.getEfficiencyRating() + "',";          
+        }
+        
+        else if(p.getClass().getName().equals("models.SolarPanel"))// copy from EditProductDetails else if(animalToEdit.getClass().getName().equals("models.SolarPanel"))
+        {
+          SolarPanel s = (SolarPanel)p;  
+          additionalAttributeSQL = "WattageOutput = '" +s.getWattageOutput() + "',";  
+        }
+        
+        try
+        {
+          Class.forName(driver);
+          Connection conn = DriverManager.getConnection(connectionString);
+          Statement stmt = conn.createStatement();
+          stmt.executeUpdate("UPDATE Products SET "
+          + "ProductName = '" + p.getProductName() + "',"
+          + "Price = '" + p.getPrice() + "',"
+          + "StockLevel = '" + p.getStockLevel() + "',"
+          
+          + "Additional = '" + p.getAdditional() + "',"
+          + additionalAttributeSQL                
+          
+          + "WHERE ProductID = '" + p.getProductId() +"'");
+          
+          
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error Editing Animal: " + ex.getMessage());
+        }
+    }
+ 
+    
+    public void deleteProduct(int productId) //could use entire Product object
+            
+    {
+     try
+     {
+        Class.forName(driver);
+        Connection conn = DriverManager.getConnection(connectionString);
+        Statement stmt = conn.createStatement();
+        stmt.executeUpdate("DELETE * FROM Products WHERE ProductID = " + productId);
+        //Product.getProductId()
+   
+     }
+     catch (Exception ex)
+     {
+         System.out.println("Error deleting product: " + ex.getMessage());
+     }
+    }
+    
+    
     //Method Write Order to Database - Stage 8
     
 //public void writeOrder(Order o)

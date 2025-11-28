@@ -45,8 +45,9 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         lstProduct = new javax.swing.JList<>();
         btnEditProduct = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDeleteProduct = new javax.swing.JButton();
         btnReturnToStaffHome = new javax.swing.JButton();
+        lblConfirmation = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,10 +83,10 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Delete Product");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteProduct.setText("Delete Product");
+        btnDeleteProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDeleteProductActionPerformed(evt);
             }
         });
 
@@ -125,8 +126,10 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
                         .addGap(125, 125, 125))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnDeleteProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(lblConfirmation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(55, 55, 55))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,14 +151,16 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnReturnToStaffHome, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblConfirmation, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnEditProduct)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btnDeleteProduct)
                         .addGap(39, 39, 39))))
         );
 
@@ -169,7 +174,20 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReturnToStaffHomeActionPerformed
 
     private void btnEditProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProductActionPerformed
-        // TODO add your handling code here:
+        
+        if(lstProduct.getSelectedIndex() != -1)
+        {
+        Object selectedProductObject = (Object)lstProduct.getSelectedValue();
+        Product selectedProduct = (Product)selectedProductObject;
+            
+        EditProductDetails edit = new EditProductDetails(selectedProduct);
+        edit.setVisible(true);
+        this.setVisible(false);
+        }
+        else
+        {
+            lblConfirmation.setText("Error: Select Product First");
+        }  
     }//GEN-LAST:event_btnEditProductActionPerformed
 
     private void lstProductValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstProductValueChanged
@@ -205,9 +223,28 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
           
     }//GEN-LAST:event_lstSelectCategoryValueChanged
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnDeleteProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProductActionPerformed
+        if(lstProduct.getSelectedIndex() != -1)
+        {
+            Object selectedProductObject = (Object)lstProduct.getSelectedValue();
+            Product selectedProduct = (Product)selectedProductObject;
+            
+            DBManager db = new DBManager();
+            db.deleteProduct(selectedProduct.getProductId());
+            
+            DefaultListModel productsModel = (DefaultListModel)lstProduct.getModel();
+            productsModel.remove(lstProduct.getSelectedIndex());
+            
+            allProducts = db.loadProducts();
+            
+            lblConfirmation.setText("Product Deleted Successfully");
+        }
+        else
+        {
+            lblConfirmation.setText("Error: Select Product first");
+        }
+                             
+    }//GEN-LAST:event_btnDeleteProductActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,14 +272,15 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeleteProduct;
     private javax.swing.JButton btnEditProduct;
     private javax.swing.JButton btnReturnToStaffHome;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblConfirmation;
     private javax.swing.JList<String> lstProduct;
     private javax.swing.JList<String> lstSelectCategory;
     // End of variables declaration//GEN-END:variables
