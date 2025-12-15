@@ -2,6 +2,7 @@ package models;
 
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -20,6 +21,32 @@ public class Customer extends User{
     private String postcode;
     private boolean isRegistered;
     private HashMap<Integer, Order> orders;// check if it is 'orders' instead orderLines
+    private LinkedList<Integer>cardNumbers;
+    
+    public LinkedList<Integer>getCardNumbers()
+    {
+        return cardNumbers;
+    }
+    public void setCardNumbers(LinkedList<Integer> cardNumbersIn)
+    {
+        cardNumbers = cardNumbersIn;
+    }
+    
+    public void addNewCard(Integer newCard)
+    {
+        cardNumbers.add(newCard);
+    }  
+    
+    public void removeCard(Integer nodeNo)
+    {
+        cardNumbers.remove(nodeNo);
+    } 
+    
+    public void addFirstCard(Integer newCard)
+    {
+        cardNumbers.addFirst(newCard);
+    }           
+    
     
     //Constructor 0 input parameter
     public Customer ()
@@ -33,6 +60,7 @@ public class Customer extends User{
        postcode = "EH99JJ";
        isRegistered = true;
        orders = new HashMap();
+       cardNumbers = new LinkedList();
        
     }
     //Constructor 8 parameters, (except isRegistered)
@@ -47,6 +75,7 @@ public class Customer extends User{
         postcode = postcodeIn;
         isRegistered = false;
         orders = new HashMap();
+        cardNumbers = new LinkedList();
         
     }
     //Getters

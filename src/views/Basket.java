@@ -158,8 +158,8 @@ public class Basket extends javax.swing.JFrame {
     private void btnBuyProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyProductActionPerformed
         DBManager db = new DBManager();//fix imports
         db.writeOrder(currentOrder,loggedInCustomer.getUsername());
-        Confirmation conf = new Confirmation(loggedInCustomer);
-        conf.setVisible(true);
+        SelectPaymentMethod payment = new SelectPaymentMethod (loggedInCustomer);
+        payment.setVisible(true);
         this.setVisible(false);   
     }//GEN-LAST:event_btnBuyProductActionPerformed
 

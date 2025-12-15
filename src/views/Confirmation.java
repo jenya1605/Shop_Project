@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package views;
 
@@ -10,19 +10,17 @@ import models.Customer;
  *
  * @author 30471297
  */
-public class Confirmation extends javax.swing.JPanel {
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Confirmation.class.getName());    
-    private Customer loggedInCustomer;// fix imports
+public class Confirmation extends javax.swing.JFrame {
+    
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Confirmation.class.getName());
+    private Customer loggedInCustomer;
     /**
      * Creates new form Confirmation
      */
     public Confirmation(Customer c) {
         loggedInCustomer = c;
         initComponents();
-        
     }
-    
-    //lblOrderPlaced.setText("Order Placed!");   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,8 +31,12 @@ public class Confirmation extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnReturnToCustomerHome = new javax.swing.JButton();
         lblOrderPlaced = new javax.swing.JLabel();
+        btnReturnToCustomerHome = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblOrderPlaced.setText("Order Placed");
 
         btnReturnToCustomerHome.setText("Return To Customer Home");
         btnReturnToCustomerHome.addActionListener(new java.awt.event.ActionListener() {
@@ -43,41 +45,65 @@ public class Confirmation extends javax.swing.JPanel {
             }
         });
 
-        lblOrderPlaced.setText("Order Placed");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnReturnToCustomerHome)
-                        .addGap(107, 107, 107))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblOrderPlaced)
-                        .addGap(158, 158, 158))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(lblOrderPlaced))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(btnReturnToCustomerHome)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(76, 76, 76)
                 .addComponent(lblOrderPlaced)
-                .addGap(68, 68, 68)
+                .addGap(75, 75, 75)
                 .addComponent(btnReturnToCustomerHome)
-                .addGap(87, 87, 87))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnToCustomerHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnToCustomerHomeActionPerformed
         // Assessment 8
         //Customer_Home chome = new Customer_Home(loggedInCustomer);
         Customer_Home chome = new Customer_Home(loggedInCustomer);
-        chome.setVisible(true);   
+        chome.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnReturnToCustomerHomeActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        //java.awt.EventQueue.invokeLater(() -> new Confirmation().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReturnToCustomerHome;

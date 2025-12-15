@@ -14,12 +14,13 @@ import models.Order;
 public class Customer_Home extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Customer_Home.class.getName());
+    private Customer loggedInCustomer;
 
     /**
      * Creates new form CustomerHome
      */
     
-    private final Customer loggedInCustomer;
+    //private final Customer loggedInCustomer;                                          // already defined Customer_Home!!!!!!
     
     public Customer_Home(Customer customer) { // stage 8
         this.loggedInCustomer = customer;
@@ -115,7 +116,10 @@ public class Customer_Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnViewMyProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMyProductsActionPerformed
-        // TODO add your handling code here:
+    Order currentOrder = new Order();                                                    
+    ShopForCustomers sShopForCustomers = new ShopForCustomers(loggedInCustomer, currentOrder);
+    this.setVisible(false);
+            
     }//GEN-LAST:event_btnViewMyProductsActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
