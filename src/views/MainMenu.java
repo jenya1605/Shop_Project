@@ -4,6 +4,8 @@
  */
 package views;
 
+import java.awt.Color;
+
 /**
  *
  * @author 30471297
@@ -17,6 +19,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
     public MainMenu() {
         initComponents();
+        getContentPane().setBackground(new Color(255,255,0));
     }
 
     /**
@@ -34,9 +37,13 @@ public class MainMenu extends javax.swing.JFrame {
         btnViewProducts = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 204));
 
+        jLabel1.setBackground(new java.awt.Color(0, 204, 204));
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Main Menu");
 
+        btnCustomerLogin.setBackground(new java.awt.Color(255, 255, 204));
         btnCustomerLogin.setText("Customer Login");
         btnCustomerLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +51,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        btnStaffLogin.setBackground(new java.awt.Color(255, 255, 204));
         btnStaffLogin.setText("Staff Login");
         btnStaffLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +59,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        btnViewProducts.setBackground(new java.awt.Color(255, 255, 204));
         btnViewProducts.setText("View Products");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -58,25 +67,27 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
+                .addGap(108, 108, 108)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCustomerLogin)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnStaffLogin)
-                        .addComponent(btnViewProducts)))
-                .addContainerGap(104, Short.MAX_VALUE))
+                        .addComponent(btnCustomerLogin)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(btnStaffLogin)))
+                    .addComponent(btnViewProducts))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(49, 49, 49)
+                .addGap(50, 50, 50)
                 .addComponent(btnCustomerLogin)
-                .addGap(37, 37, 37)
+                .addGap(36, 36, 36)
                 .addComponent(btnStaffLogin)
                 .addGap(41, 41, 41)
                 .addComponent(btnViewProducts)

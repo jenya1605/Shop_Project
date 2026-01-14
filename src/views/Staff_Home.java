@@ -33,9 +33,11 @@ public class Staff_Home extends javax.swing.JFrame {
         btnModifyProducts = new javax.swing.JButton();
         btnViewAllOrders = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        btnSearchAndSortProducts = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnModifyProducts.setBackground(new java.awt.Color(255, 255, 204));
         btnModifyProducts.setText("Modify Products");
         btnModifyProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,8 +45,10 @@ public class Staff_Home extends javax.swing.JFrame {
             }
         });
 
+        btnViewAllOrders.setBackground(new java.awt.Color(255, 255, 204));
         btnViewAllOrders.setText("View All Orders");
 
+        btnLogOut.setBackground(new java.awt.Color(0, 204, 204));
         btnLogOut.setText("LOGOUT");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,29 +56,44 @@ public class Staff_Home extends javax.swing.JFrame {
             }
         });
 
+        btnSearchAndSortProducts.setBackground(new java.awt.Color(255, 255, 204));
+        btnSearchAndSortProducts.setText("Search And Sort Products ");
+        btnSearchAndSortProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchAndSortProductsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnViewAllOrders)
-                    .addComponent(btnModifyProducts))
-                .addContainerGap(101, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
                 .addGap(26, 26, 26))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnViewAllOrders)
+                            .addComponent(btnModifyProducts)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(btnSearchAndSortProducts)))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(36, 36, 36)
                 .addComponent(btnModifyProducts)
-                .addGap(59, 59, 59)
+                .addGap(35, 35, 35)
+                .addComponent(btnSearchAndSortProducts)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnViewAllOrders)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(btnLogOut)
                 .addGap(24, 24, 24))
         );
@@ -97,6 +116,15 @@ public class Staff_Home extends javax.swing.JFrame {
         // hide the current frame
         this.setVisible(false);
     }//GEN-LAST:event_btnModifyProductsActionPerformed
+
+    private void btnSearchAndSortProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchAndSortProductsActionPerformed
+    // stage 12
+    
+    SearchSortProducts sersorp = new SearchSortProducts();
+    sersorp.setVisible(true);
+    this.setVisible(false);
+    
+    }//GEN-LAST:event_btnSearchAndSortProductsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,6 +154,7 @@ public class Staff_Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnModifyProducts;
+    private javax.swing.JButton btnSearchAndSortProducts;
     private javax.swing.JButton btnViewAllOrders;
     // End of variables declaration//GEN-END:variables
 }

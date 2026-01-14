@@ -47,12 +47,14 @@ public class Customer_Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Customer Login");
 
         jLabel2.setText("Username:");
 
         jLabel3.setText("Password:");
 
+        btnLogin.setBackground(new java.awt.Color(255, 255, 204));
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,8 +62,15 @@ public class Customer_Login extends javax.swing.JFrame {
             }
         });
 
+        btnRegister.setBackground(new java.awt.Color(255, 255, 204));
         btnRegister.setText("REGISTER");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
 
+        btnReturnToMainMenu.setBackground(new java.awt.Color(0, 204, 204));
         btnReturnToMainMenu.setText("Return to Main Menu");
         btnReturnToMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +78,7 @@ public class Customer_Login extends javax.swing.JFrame {
             }
         });
 
+        lblErrorMessage.setForeground(new java.awt.Color(102, 102, 102));
         lblErrorMessage.setText("Enter your details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -77,7 +87,7 @@ public class Customer_Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(lblErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblErrorMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnReturnToMainMenu)
                 .addGap(16, 16, 16))
@@ -153,6 +163,10 @@ public class Customer_Login extends javax.swing.JFrame {
     }
     
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
      * @param args the command line arguments

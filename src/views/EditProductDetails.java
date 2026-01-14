@@ -28,7 +28,7 @@ public class EditProductDetails extends javax.swing.JFrame {
         txtProductName.setText(String.valueOf(productToEdit.getProductName()));
         txtPrice.setText(String.valueOf(productToEdit.getPrice()));
         txtStockLevel.setText(String.valueOf(productToEdit.getStockLevel()));
-        txtAdditional.setText(String.valueOf(productToEdit.getAdditional()));
+        //txtAdditional.setText(String.valueOf(productToEdit.getAdditional()));
         
         if(productToEdit.getClass().getName().equals("models.HeatPump"))
         {
@@ -74,6 +74,7 @@ public class EditProductDetails extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lblEditProductDetails.setForeground(new java.awt.Color(102, 102, 102));
         lblEditProductDetails.setText("Edit Product Details");
 
         lblProductID.setText("Product ID");
@@ -84,6 +85,7 @@ public class EditProductDetails extends javax.swing.JFrame {
 
         lblAdditional.setText("Additional");
 
+        btnSubmit.setBackground(new java.awt.Color(204, 255, 204));
         btnSubmit.setText("SUBMIT");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +93,7 @@ public class EditProductDetails extends javax.swing.JFrame {
             }
         });
 
+        btnReturnToSelectProduct.setBackground(new java.awt.Color(0, 204, 204));
         btnReturnToSelectProduct.setText("RETURN TO SELECT PRODUCT");
         btnReturnToSelectProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,17 +189,17 @@ public class EditProductDetails extends javax.swing.JFrame {
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
 
      String productName = txtProductName.getText();
-     double price = Double.parseDouble(txtProductName.getText());
+     double price = Double.parseDouble(txtPrice.getText());
      int stockLevel = Integer.parseInt(txtStockLevel.getText());
      //boolean availability = Boolean.parseBoolean(txtAvailability.getText());
-     String additional = txtAdditional.getText();
+    // String additional = txtAdditional.getText();
      
      //Create Setters inside Product
      
      productToEdit.setProductName(productName);
      productToEdit.setPrice(price);
      productToEdit.setStockLevel(stockLevel);
-     productToEdit.setAdditional(additional);
+    // productToEdit.setAdditional(additional);
  
      
     if(productToEdit.getClass().getName().equals("models.HeatPump"))

@@ -47,18 +47,15 @@ private final String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
           stmt.executeUpdate("UPDATE Products SET "
           + "ProductName = '" + p.getProductName() + "',"
           + "Price = '" + p.getPrice() + "',"
-          + "StockLevel = '" + p.getStockLevel() + "',"
-          
-          + "Additional = '" + p.getAdditional() + "',"
           + additionalAttributeSQL                
-          
+          + "StockLevel = '" + p.getStockLevel() + "' "
           + "WHERE ProductID = '" + p.getProductId() +"'");
           
           
         }
         catch(Exception ex)
         {
-            System.out.println("Error Editing Animal: " + ex.getMessage());
+            System.out.println("Error Editing Product: " + ex.getMessage());
         }
     }
  

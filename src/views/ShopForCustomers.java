@@ -70,6 +70,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnBack.setBackground(new java.awt.Color(204, 255, 255));
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +78,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
             }
         });
 
+        btnViewBasket.setBackground(new java.awt.Color(255, 255, 204));
         btnViewBasket.setText("VIEW BASKET");
         btnViewBasket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +86,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
             }
         });
 
+        btnAddToBasket.setBackground(new java.awt.Color(0, 204, 204));
         btnAddToBasket.setText("ADD TO BASKET");
         btnAddToBasket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +112,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstCategory);
 
+        lstProduct.setBackground(new java.awt.Color(204, 255, 204));
         jScrollPane2.setViewportView(lstProduct);
 
         jLabel1.setText("Quantity");

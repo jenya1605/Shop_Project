@@ -51,6 +51,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("  Staff Product Menu Page");
 
         jLabel2.setText("Category");
@@ -69,6 +70,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstSelectCategory);
 
+        lstProduct.setBackground(new java.awt.Color(255, 204, 204));
         lstProduct.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lstProductValueChanged(evt);
@@ -76,6 +78,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lstProduct);
 
+        btnEditProduct.setBackground(new java.awt.Color(255, 255, 204));
         btnEditProduct.setText("Edit Product");
         btnEditProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +86,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
             }
         });
 
+        btnDeleteProduct.setBackground(new java.awt.Color(255, 255, 204));
         btnDeleteProduct.setText("Delete Product");
         btnDeleteProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +94,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
             }
         });
 
+        btnReturnToStaffHome.setBackground(new java.awt.Color(0, 204, 204));
         btnReturnToStaffHome.setText("Return To Staff Home");
         btnReturnToStaffHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

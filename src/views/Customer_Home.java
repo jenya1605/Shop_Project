@@ -47,6 +47,7 @@ public class Customer_Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnBrowseProducts.setBackground(new java.awt.Color(255, 255, 204));
         btnBrowseProducts.setText("Browse Products");
         btnBrowseProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +55,7 @@ public class Customer_Home extends javax.swing.JFrame {
             }
         });
 
+        btnViewMyProducts.setBackground(new java.awt.Color(255, 255, 204));
         btnViewMyProducts.setText("View My Products");
         btnViewMyProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,10 +63,18 @@ public class Customer_Home extends javax.swing.JFrame {
             }
         });
 
+        btnEditDetails.setBackground(new java.awt.Color(255, 255, 204));
         btnEditDetails.setText("Edit Details");
+        btnEditDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditDetailsActionPerformed(evt);
+            }
+        });
 
+        btnUnregister.setBackground(new java.awt.Color(255, 255, 204));
         btnUnregister.setText("Unregister From Shop");
 
+        btnLogout.setBackground(new java.awt.Color(0, 204, 204));
         btnLogout.setText("LOG OUT");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +109,7 @@ public class Customer_Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBrowseProducts)
                 .addGap(54, 54, 54)
                 .addComponent(btnViewMyProducts)
@@ -107,7 +117,7 @@ public class Customer_Home extends javax.swing.JFrame {
                 .addComponent(btnEditDetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnUnregister)
-                .addGap(28, 28, 28)
+                .addGap(61, 61, 61)
                 .addComponent(btnLogout)
                 .addContainerGap())
         );
@@ -151,6 +161,10 @@ public class Customer_Home extends javax.swing.JFrame {
 //        }
 //        lstProduct.setModel(ProductModel);
     }//GEN-LAST:event_btnBrowseProductsActionPerformed
+
+    private void btnEditDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditDetailsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditDetailsActionPerformed
 
     /**
      * @param args the command line arguments

@@ -57,8 +57,10 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lblSelectPaymentMethod.setForeground(new java.awt.Color(102, 102, 102));
         lblSelectPaymentMethod.setText("Select Payment Method");
 
+        btnDelete.setBackground(new java.awt.Color(0, 204, 204));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,10 +68,12 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
             }
         });
 
+        lstCardNumbers.setBackground(new java.awt.Color(204, 255, 204));
         jScrollPane1.setViewportView(lstCardNumbers);
 
         lblCard.setText("New Card");
 
+        btnAdd.setBackground(new java.awt.Color(255, 255, 204));
         btnAdd.setText("ADD");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,8 +81,10 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
             }
         });
 
+        lblConfirmation.setForeground(new java.awt.Color(102, 102, 102));
         lblConfirmation.setText("Confirm Payment Method");
 
+        btnConfirmPaymentMethod.setBackground(new java.awt.Color(204, 255, 255));
         btnConfirmPaymentMethod.setText("Confirm Payment Method");
         btnConfirmPaymentMethod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,8 +92,10 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
             }
         });
 
+        lblDefaultCard.setBackground(new java.awt.Color(255, 255, 204));
         lblDefaultCard.setText("Default Payment Method");
 
+        btnAddDefaultAddress.setBackground(new java.awt.Color(255, 255, 204));
         btnAddDefaultAddress.setText("ADD");
         btnAddDefaultAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +103,7 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
             }
         });
 
+        btnDeleteSelecterdCard.setBackground(new java.awt.Color(204, 255, 255));
         btnDeleteSelecterdCard.setText("Delete Selected Card");
         btnDeleteSelecterdCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

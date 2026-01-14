@@ -36,8 +36,11 @@ public class Confirmation extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lblOrderPlaced.setBackground(new java.awt.Color(255, 153, 0));
+        lblOrderPlaced.setForeground(new java.awt.Color(102, 102, 102));
         lblOrderPlaced.setText("Order Placed");
 
+        btnReturnToCustomerHome.setBackground(new java.awt.Color(255, 255, 204));
         btnReturnToCustomerHome.setText("Return To Customer Home");
         btnReturnToCustomerHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

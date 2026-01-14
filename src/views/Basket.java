@@ -74,6 +74,7 @@ public class Basket extends javax.swing.JFrame {
             }
         });
 
+        tblProductBasket.setBackground(new java.awt.Color(255, 204, 204));
         tblProductBasket.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -102,6 +103,7 @@ public class Basket extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblProductBasket);
 
+        btnAddMoreProducts.setBackground(new java.awt.Color(255, 255, 204));
         btnAddMoreProducts.setText("Add More Products");
         btnAddMoreProducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +111,7 @@ public class Basket extends javax.swing.JFrame {
             }
         });
 
+        btnBuyProduct.setBackground(new java.awt.Color(255, 255, 204));
         btnBuyProduct.setText("Buy Your Product");
         btnBuyProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

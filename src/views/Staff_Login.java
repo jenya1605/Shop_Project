@@ -42,12 +42,14 @@ public class Staff_Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Staff Login");
 
         jLabel2.setText("Username");
 
         jLabel3.setText("Password");
 
+        btnLogin.setBackground(new java.awt.Color(255, 255, 204));
         btnLogin.setText("LOGIN");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +57,7 @@ public class Staff_Login extends javax.swing.JFrame {
             }
         });
 
+        btnReturnToMainMenu.setBackground(new java.awt.Color(0, 204, 204));
         btnReturnToMainMenu.setText("Return to Main Menu");
         btnReturnToMainMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +65,7 @@ public class Staff_Login extends javax.swing.JFrame {
             }
         });
 
+        lblErrorMessage.setForeground(new java.awt.Color(102, 102, 102));
         lblErrorMessage.setText("Enter your Details");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
