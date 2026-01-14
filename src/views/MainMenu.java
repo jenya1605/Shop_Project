@@ -61,6 +61,11 @@ public class MainMenu extends javax.swing.JFrame {
 
         btnViewProducts.setBackground(new java.awt.Color(255, 255, 204));
         btnViewProducts.setText("View Products");
+        btnViewProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewProductsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,6 +113,12 @@ public class MainMenu extends javax.swing.JFrame {
     sLogin.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_btnStaffLoginActionPerformed
+
+    private void btnViewProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProductsActionPerformed
+    ViewProducts vProducts = new ViewProducts();
+    vProducts.setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_btnViewProductsActionPerformed
 
     /**
      * @param args the command line arguments

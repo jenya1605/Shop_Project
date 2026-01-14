@@ -103,6 +103,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="View Products"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewProductsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

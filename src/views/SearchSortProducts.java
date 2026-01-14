@@ -29,8 +29,10 @@ public class SearchSortProducts extends javax.swing.JFrame {
         
         lstProducts.setModel(model);
         
+        btnBinarySearch.setEnabled(false); // search is not available till the list is sorted
+        
         loadAllProducts();
-        displayProducts();
+        displayProducts();  
     }
 
     private void loadAllProducts() {
@@ -84,9 +86,53 @@ public class SearchSortProducts extends javax.swing.JFrame {
         }
     }
 }
+    
+    // Method: Linear Search for Products by Price
+    private void linearSearch(double priceToFind) {
+    model.clear(); // Clear previous search results
+    boolean isProductFound = false;
 
+    // Iterate through the list of products
+    for (Product productItem : products) {
+        if (productItem.getPrice() == priceToFind) {
+            // Add matching product to the display model
+            model.addElement(productItem.getProductName() + " - £" + productItem.getPrice());
+            isProductFound = true;
+        }
+    }
+
+    // If no product matches the price, show a message
+    if (!isProductFound) {
+        model.addElement("No product found with price £" + priceToFind);
+    }
+}
     
     
+    // Method: Binary Search for Products by Price
+    private void binarySearch(double priceToFind) {
+    model.clear();
+
+    int lowIndex = 0;
+    int highIndex = products.size() - 1;
+
+    while (lowIndex <= highIndex) {
+        int middleIndex = (lowIndex + highIndex) / 2;
+        double middlePrice = products.get(middleIndex).getPrice();
+
+        if (middlePrice == priceToFind) {
+            Product matchedProduct = products.get(middleIndex);
+            model.addElement(matchedProduct.getProductName() + " — £" + matchedProduct.getPrice());
+            return;
+        } else if (middlePrice < priceToFind) {
+            lowIndex = middleIndex + 1;      // search right half
+        } else {
+            highIndex = middleIndex - 1;     // search left half
+        }
+    }
+
+    model.addElement("No products found at price £" + priceToFind);
+}
+   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -101,6 +147,10 @@ public class SearchSortProducts extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         lstProducts = new javax.swing.JList<>();
         btnSelectionSort = new javax.swing.JButton();
+        btnLinearSearch = new javax.swing.JButton();
+        btnBinarySearch = new javax.swing.JButton();
+        lblProductPrice = new javax.swing.JLabel();
+        txtProductPrice = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,30 +170,65 @@ public class SearchSortProducts extends javax.swing.JFrame {
             }
         });
 
+        btnLinearSearch.setText("Linear Search");
+        btnLinearSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLinearSearchActionPerformed(evt);
+            }
+        });
+
+        btnBinarySearch.setText("Binary Search");
+        btnBinarySearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBinarySearchActionPerformed(evt);
+            }
+        });
+
+        lblProductPrice.setText("Enter Product Price");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBubbleSort)
-                        .addGap(57, 57, 57)
+                        .addGap(18, 18, 18)
                         .addComponent(btnSelectionSort)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLinearSearch)
+                        .addGap(44, 44, 44)
+                        .addComponent(btnBinarySearch))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(lblProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBubbleSort)
-                    .addComponent(btnSelectionSort))
-                .addGap(41, 41, 41))
+                    .addComponent(btnSelectionSort)
+                    .addComponent(lblProductPrice)
+                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBinarySearch)
+                    .addComponent(btnLinearSearch))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,6 +239,7 @@ public class SearchSortProducts extends javax.swing.JFrame {
     
     bubbleSortProducts();
     displayProducts();
+    btnBinarySearch.setEnabled(true);
     
     }                                             
     
@@ -172,11 +258,33 @@ public class SearchSortProducts extends javax.swing.JFrame {
     
      sortProductsByPriceAscending();
      displayProducts();
-     // btnBinarySearch.setEnabled(true);
+     btnBinarySearch.setEnabled(true);
 
 
     
     }//GEN-LAST:event_btnSelectionSortActionPerformed
+
+    private void btnLinearSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLinearSearchActionPerformed
+    // stage 14
+        try {
+        double priceToSearch = Double.parseDouble(txtProductPrice.getText());
+        linearSearch(priceToSearch);
+    } catch (NumberFormatException e) {
+        model.clear();
+        model.addElement("Please enter valid price.");
+    }
+    }//GEN-LAST:event_btnLinearSearchActionPerformed
+
+    private void btnBinarySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBinarySearchActionPerformed
+   // stage 14                                              
+    try {
+        double priceToSearch = Double.parseDouble(txtProductPrice.getText());
+        binarySearch(priceToSearch);
+    } catch (NumberFormatException e) {
+        model.clear();
+        model.addElement("Please enter valid price.");
+    }
+    }//GEN-LAST:event_btnBinarySearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,13 +308,17 @@ public class SearchSortProducts extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new SearchSortProducts().setVisible(true));
+        //java.awt.EventQueue.invokeLater(() -> new SearchSortProducts().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBinarySearch;
     private javax.swing.JButton btnBubbleSort;
+    private javax.swing.JButton btnLinearSearch;
     private javax.swing.JButton btnSelectionSort;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblProductPrice;
     private javax.swing.JList<String> lstProducts;
+    private javax.swing.JTextField txtProductPrice;
     // End of variables declaration//GEN-END:variables
 }
