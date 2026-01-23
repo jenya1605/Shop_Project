@@ -15,42 +15,46 @@ import models.Product;
  */
 public class SearchSortProducts extends javax.swing.JFrame {
     
+    // Logger for reporting errors or runtime issues
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchSortProducts.class.getName());
-    
+    // Model used by JList to display product names and prices
     private DefaultListModel <String> model= new DefaultListModel<>();
-    
+    // Holds the list of Product objects loaded from the database
     private ArrayList<Product> products = new ArrayList<>();
     
     /**
-     * Creates new form SearchSortProductss
+     * Creates new form SearchSortProducts
+     * 
+     * 
      */
     public SearchSortProducts() {
         initComponents();
-        
+        // Attach the model to the visible JList component
         lstProducts.setModel(model);
-        
+        //Disable binary search until list has been sorted
         btnBinarySearch.setEnabled(false); // search is not available till the list is sorted
         
-        loadAllProducts();
+        loadAllProducts();// Load products from the database
         displayProducts();  
     }
 
     private void loadAllProducts() {
+        //Loads all products from the database using DBManager
         DBManager db = new DBManager(); // fix imports
         products = db.loadProducts();
         
     }
-    
+    //Bubble Sort implementation: sorts products by price 
     private void bubbleSortProducts(){
         int totalProducts = products.size();
 
     for (int pass = 0; pass < totalProducts - 1; pass++) {
-        boolean didSwap = false;
-
+        boolean didSwap = false;//each pass moves largest item to the end
+        //Compare each pair
         for (int index = 0; index < totalProducts - pass - 1; index++) {
             if (products.get(index).getPrice() > products.get(index + 1).getPrice()) {
                 // Swap the products
-                Product currentProduct = products.get(index);
+                Product currentProduct = products.get(index);//Swap the products
                 products.set(index, products.get(index + 1));
                 products.set(index + 1, currentProduct);
                 didSwap = true;
@@ -154,6 +158,7 @@ public class SearchSortProducts extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnBubbleSort.setBackground(new java.awt.Color(255, 255, 204));
         btnBubbleSort.setText("Bubble Sort");
         btnBubbleSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,8 +166,10 @@ public class SearchSortProducts extends javax.swing.JFrame {
             }
         });
 
+        lstProducts.setBackground(new java.awt.Color(204, 255, 204));
         jScrollPane1.setViewportView(lstProducts);
 
+        btnSelectionSort.setBackground(new java.awt.Color(255, 255, 204));
         btnSelectionSort.setText("Selection Sort");
         btnSelectionSort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +177,7 @@ public class SearchSortProducts extends javax.swing.JFrame {
             }
         });
 
+        btnLinearSearch.setBackground(new java.awt.Color(255, 255, 204));
         btnLinearSearch.setText("Linear Search");
         btnLinearSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +185,7 @@ public class SearchSortProducts extends javax.swing.JFrame {
             }
         });
 
+        btnBinarySearch.setBackground(new java.awt.Color(255, 255, 204));
         btnBinarySearch.setText("Binary Search");
         btnBinarySearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +193,7 @@ public class SearchSortProducts extends javax.swing.JFrame {
             }
         });
 
+        lblProductPrice.setBackground(new java.awt.Color(255, 255, 204));
         lblProductPrice.setText("Enter Product Price");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

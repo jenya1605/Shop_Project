@@ -4,6 +4,7 @@
  */
 package views;
 
+import java.awt.Color;
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -18,24 +19,26 @@ import models.Product;
  * @author 30471297
  */
 public class ShopForCustomers extends javax.swing.JFrame {
-    
+    // List of ALL products loaded from the database
     private ArrayList<Product> allProducts;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ShopForCustomers.class.getName());
 
     
-    private Order currentOrder; //fix import
-    private Customer loggedInCustomer; //fix import
+    private Order currentOrder; //fix import. The customer's current order
+    private Customer loggedInCustomer; //fix import.The customer who is currently loggede in
     
     /**
      * Creates new form ShopForCustomers
      */
+    //Constructor. Receives logged-in customer + their order
     public ShopForCustomers(Customer c, Order o) {
         loggedInCustomer = c;
         currentOrder = new Order();
         
         DBManager db = new DBManager();
         
-        allProducts = db.loadProducts();
+        allProducts = db.loadProducts(); //Load all available products from DB
+        getContentPane().setBackground(new Color(153,255,204));//Set background colour
         initComponents();
     }
 
@@ -203,13 +206,13 @@ public class ShopForCustomers extends javax.swing.JFrame {
 
     private void btnAddToBasketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToBasketActionPerformed
         
-      if(lstProduct.getSelectedIndex() == -1)
+      if(lstProduct.getSelectedIndex() == -1)//Ensure a product is selected
        {
            lblInformation.setText("Select Product, Please");
            return;
        }
         
-       String quantity = txtQuantity.getText();
+       String quantity = txtQuantity.getText(); //Ensure quantity was entered
 
         if (quantity.isEmpty())
       {
@@ -217,17 +220,18 @@ public class ShopForCustomers extends javax.swing.JFrame {
            return; 
       }   
              //create a variable q
-       int q = parseInt(quantity);
-        
+       int q = parseInt(quantity); //Convert quantity string into integer
+            // Get product selected from JList
             Object selectedProductObject = (Object)lstProduct.getSelectedValue();
-            Product selectedProduct = (Product)selectedProductObject;
             
+            Product selectedProduct = (Product)selectedProductObject;
+            // Get stock availability
             int availability = selectedProduct.getStockLevel();
             
             
             if(availability >= q == true)
             {
-                //Create OrderLine 
+                //Create OrderLine for product + quantity
                 OrderLine ol = new OrderLine(selectedProduct,q);//qantity
            
                 currentOrder.addOrderLine(ol);
@@ -246,6 +250,7 @@ public class ShopForCustomers extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQuantityActionPerformed
 
     private void lstCategoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCategoryValueChanged
+       
         String selectedCategory = lstCategory.getSelectedValue();
         
         DefaultListModel ProductModel = new DefaultListModel();

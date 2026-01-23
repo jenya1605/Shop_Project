@@ -10,6 +10,8 @@ package models;
  * @author 30471297
  */
 public class Staff extends User {
+    //Staff extends User, it inherits all User attributes and methods.
+    //It adds two new attributes position and salary
     //Attributes
     private String position;
     private double salary;

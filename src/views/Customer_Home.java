@@ -4,6 +4,7 @@
  */
 package views;
 
+import java.awt.Color;
 import models.Customer;
 import models.Order;
 
@@ -12,6 +13,7 @@ import models.Order;
  * @author 30471297
  */
 public class Customer_Home extends javax.swing.JFrame {
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Customer_Home.class.getName());
     private Customer loggedInCustomer;
@@ -23,8 +25,11 @@ public class Customer_Home extends javax.swing.JFrame {
     //private final Customer loggedInCustomer;                                          // already defined Customer_Home!!!!!!
     
     public Customer_Home(Customer customer) { // stage 8
-        this.loggedInCustomer = customer;
+        this.loggedInCustomer = customer; // Save the logged-in customer
+
+        getContentPane().setBackground(new Color(153,255,204)); // Set background colour of the window    
         initComponents();
+
         
         lblWelcome.setText("Welcome, " + loggedInCustomer.getLastname() );
     }
@@ -124,20 +129,21 @@ public class Customer_Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Opens the ShopForCustomers window with a NEW empty order.
     private void btnViewMyProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMyProductsActionPerformed
-    Order currentOrder = new Order();                                                    
+    Order currentOrder = new Order();// Create new empty order
+                                                   
     ShopForCustomers sShopForCustomers = new ShopForCustomers(loggedInCustomer, currentOrder);
     this.setVisible(false);
             
     }//GEN-LAST:event_btnViewMyProductsActionPerformed
-
+    //Returns the user to the main menu.
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
     MainMenu mMenu = new MainMenu();
     mMenu.setVisible(true);
     this.setVisible(false);      
     }//GEN-LAST:event_btnLogoutActionPerformed
-
+    // Opens the product browsing window with a NEW empty order.
     private void btnBrowseProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseProductsActionPerformed
     Order currentOrder = new Order();// fix imports
     ShopForCustomers sShopForCustomers = new ShopForCustomers(loggedInCustomer, currentOrder);
@@ -145,12 +151,8 @@ public class Customer_Home extends javax.swing.JFrame {
     sShopForCustomers.setVisible(true);
   
     this.setVisible(false);
-//    
-//    
-//        String selectedCategory = lstCategory.getSelectedValue();
-//        
+//        String selectedCategory = lstCategory.getSelectedValue(); 
 //        DefaultListModel ProductModel = new DefaultListModel();
-//        
 //        for(Product a : allProducts)
 //        {
 //            //package.class

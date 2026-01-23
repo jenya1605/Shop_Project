@@ -4,6 +4,7 @@
  */
 package views;
 
+import java.awt.Color;
 import models.DBManager;
 import models.Staff;
 
@@ -20,6 +21,7 @@ public class Staff_Login extends javax.swing.JFrame {
      */
     public Staff_Login() {
         initComponents();
+        getContentPane().setBackground(new Color(153,255,204));
     }
 
     /**
@@ -41,6 +43,7 @@ public class Staff_Login extends javax.swing.JFrame {
         lblErrorMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
         jLabel1.setText("Staff Login");

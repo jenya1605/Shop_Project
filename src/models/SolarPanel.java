@@ -14,6 +14,9 @@ import models.Product;
  */
 public class SolarPanel extends Product {
     
+    // SolarPanel class inherits all product attributes from Product,
+    // adds one unique attribute wattageOutput how much power the panel produces
+
     //Attributes
     private int wattageOutput;
     

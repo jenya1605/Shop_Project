@@ -4,6 +4,7 @@
  */
 package views;
 
+import java.awt.Color;
 import javax.swing.DefaultListModel;
 import models.Customer;
 
@@ -20,6 +21,7 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
      */
     public SelectPaymentMethod(Customer c) {
         loggedInCustomer = c;
+        getContentPane().setBackground(new Color(153,255,204));
         initComponents();
     }
         public void show_all_cardNumbers()

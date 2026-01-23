@@ -4,10 +4,13 @@
  */
 package views;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import models.DBManager;
+import models.HeatPump;
 import models.Product;
+import models.SolarPanel;
 
 /**
  *
@@ -15,9 +18,10 @@ import models.Product;
  */
 public class ViewProducts extends javax.swing.JFrame {
     
+    private final ArrayList<Product> allProducts; // all products from DB 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ViewProducts.class.getName());
 
-    private ArrayList<Product> allProducts; // all products from DB
+
    
     /**
      * Creates new form ViewProducts
@@ -26,11 +30,34 @@ public class ViewProducts extends javax.swing.JFrame {
         
         DBManager db = new DBManager();
         allProducts = db.loadProducts();
-        
+        getContentPane().setBackground(new Color(153,255,204));        
         initComponents();
         
     }
+    
+    
+    private void loadProducts(String category) {
+    DefaultListModel model = new DefaultListModel(); // fix imports
 
+    // Loop through all products
+    for (Product product : allProducts) {
+        if (category.equals("HeatPump")) {
+            if (product instanceof HeatPump) {
+                model.addElement(product.getProductName() + " - £" + product.getPrice());
+            }
+        } else if (category.equals("SolarPanel")) {
+            if (product instanceof SolarPanel) {
+                model.addElement(product.getProductName() + " - £" + product.getPrice());
+            }
+        }
+    }
+
+    lstProducts.setModel(model);
+}
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,22 +66,7 @@ public class ViewProducts extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
 
 
-    private void lstCategoryValueChanged(javax.swing.event.ListSelectionEvent evt) {     
-    
-    String selectedCategory = lstCategory.getSelectedValue();
-        
-        DefaultListModel ProductModel = new DefaultListModel();
-        
-        for(Product a : allProducts)
-        {
-            //package.class
-            if(a.getClass().getName().equals("models." + selectedCategory))
-            {
-               ProductModel.addElement(a); 
-            }
-        }
-        lstProducts.setModel(ProductModel);
-    }             
+               
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -68,6 +80,7 @@ public class ViewProducts extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnBack.setBackground(new java.awt.Color(0, 204, 204));
         btnBack.setText("BACK");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +88,7 @@ public class ViewProducts extends javax.swing.JFrame {
             }
         });
 
+        lstProducts.setBackground(new java.awt.Color(204, 255, 204));
         jScrollPane1.setViewportView(lstProducts);
 
         lstCategory.setModel(new javax.swing.AbstractListModel<String>() {
@@ -82,10 +96,17 @@ public class ViewProducts extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        lstCategory.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstCategoryValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lstCategory);
 
+        lblCategory.setForeground(new java.awt.Color(102, 102, 102));
         lblCategory.setText("Category");
 
+        lblProducts.setForeground(new java.awt.Color(102, 102, 102));
         lblProducts.setText("Products");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,8 +141,8 @@ public class ViewProducts extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(103, 103, 103)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(109, 109, 109)))
                 .addComponent(btnBack)
                 .addGap(26, 26, 26))
         );
@@ -134,6 +155,19 @@ public class ViewProducts extends javax.swing.JFrame {
     mMenu.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void lstCategoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCategoryValueChanged
+        // TODO add your handling code here:
+        if (!evt.getValueIsAdjusting()) {
+       
+            String selected = lstCategory.getSelectedValue();
+           
+            if (selected != null) {
+                // call the method to load the products
+                loadProducts(selected);   //loadProducts local method            
+            }
+        }  
+    }//GEN-LAST:event_lstCategoryValueChanged
 
     /**
      * @param args the command line arguments

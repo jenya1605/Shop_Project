@@ -4,6 +4,7 @@
  */
 package views;
 
+import java.awt.Color;
 import models.DBManager;
 import models.HeatPump;
 import models.Product;
@@ -14,37 +15,42 @@ import models.SolarPanel;
  * @author 30471297
  */
 public class EditProductDetails extends javax.swing.JFrame {
-    
+   
+
+    // Logger for runtime issues 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EditProductDetails.class.getName());
-    private Product productToEdit;
+    private Product productToEdit; //passed in to edit
     /**
      * Creates new form EditProduct
      */
+     // Constructor. Receives the Product to be edited and pre-populates the form
     public EditProductDetails(Product p) {
-        productToEdit = p;
+        getContentPane().setBackground(new Color(153,255,204));//Set background color
+        productToEdit = p;// Save reference to the product to edit
         initComponents();
-        
+        // the text fields with the existing product details
         txtProductID.setText(String.valueOf(productToEdit.getProductId()));
         txtProductName.setText(String.valueOf(productToEdit.getProductName()));
         txtPrice.setText(String.valueOf(productToEdit.getPrice()));
         txtStockLevel.setText(String.valueOf(productToEdit.getStockLevel()));
         //txtAdditional.setText(String.valueOf(productToEdit.getAdditional()));
         
-        if(productToEdit.getClass().getName().equals("models.HeatPump"))
+        if(productToEdit.getClass().getName().equals("models.HeatPump"))// Cast to HeatPump to access its specific attribute
         {
             HeatPump h = (HeatPump)productToEdit;
             
             lblAdditional.setText("EfficiencyRating:");
-            txtAdditional.setText(String.valueOf(h.getEfficiencyRating()));
-                                            //Create getefficiencyRating inside HeatPump class
+            txtAdditional.setText(String.valueOf(h.getEfficiencyRating()));//uses HeatPump getter
+        //Create getefficiencyRating inside HeatPump class
         }
         else if(productToEdit.getClass().getName().equals("models.SolarPanel"))
+        // Cast to SolarPanel to access its specific attribute
         {
             SolarPanel s = (SolarPanel)productToEdit;
             
             lblAdditional.setText("WattageOutput:");
-            txtAdditional.setText(String.valueOf(s.getWattageOutput()));
-                                        //Create getWattageOutput inside SolarPanel class
+            txtAdditional.setText(String.valueOf(s.getWattageOutput()));//uses SolarPanel getter
+            //Create getWattageOutput inside SolarPanel class
         }
         
     }

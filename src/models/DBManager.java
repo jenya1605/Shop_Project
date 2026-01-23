@@ -27,13 +27,13 @@ private final String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
      public void editProduct(Product p)
     {
         String additionalAttributeSQL = "";
-        if(p.getClass().getName().equals("models.HeatPump"))//   copy from EditProductDetails  if(productToEdit.getClass().getName().equals("models.HeatPump"))
+        if(p.getClass().getName().equals("models.HeatPump"))//copy from EditProductDetails  if(productToEdit.getClass().getName().equals("models.HeatPump"))
         {
           HeatPump h = (HeatPump)p;  
           additionalAttributeSQL = "EfficiencyRating = '" +h.getEfficiencyRating() + "',";          
         }
         
-        else if(p.getClass().getName().equals("models.SolarPanel"))// copy from EditProductDetails else if(animalToEdit.getClass().getName().equals("models.SolarPanel"))
+        else if(p.getClass().getName().equals("models.SolarPanel"))//copy from EditProductDetails else if(animalToEdit.getClass().getName().equals("models.SolarPanel"))
         {
           SolarPanel s = (SolarPanel)p;  
           additionalAttributeSQL = "WattageOutput = '" +s.getWattageOutput() + "',";  
@@ -42,7 +42,7 @@ private final String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
         try
         {
           Class.forName(driver);
-          Connection conn = DriverManager.getConnection(connectionString);
+          Connection conn = DriverManager.getConnection(connectionString);// Connect to the database
           Statement stmt = conn.createStatement();
           stmt.executeUpdate("UPDATE Products SET "
           + "ProductName = '" + p.getProductName() + "',"
@@ -68,13 +68,13 @@ private final String driver = "net.ucanaccess.jdbc.UcanaccessDriver";
         Class.forName(driver);
         Connection conn = DriverManager.getConnection(connectionString);
         Statement stmt = conn.createStatement();
-        stmt.executeUpdate("DELETE * FROM Products WHERE ProductID = " + productId);
+        stmt.executeUpdate("DELETE * FROM Products WHERE ProductID = " + productId);// remove product 
         //Product.getProductId()
    
      }
      catch (Exception ex)
      {
-         System.out.println("Error deleting product: " + ex.getMessage());
+         System.out.println("Error deleting product: " + ex.getMessage());// Print an error message
      }
     }
     
@@ -87,7 +87,7 @@ public void writeOrder(Order o, String customerUsername)
      try
         {
             Class.forName(driver);
-            Connection conn = DriverManager.getConnection(connectionString);
+            Connection conn = DriverManager.getConnection(connectionString);//Connect to database using the connection string
             Statement stmt = conn.createStatement();
             
         stmt.executeUpdate("INSERT INTO Orders (OrderDate,Username,OrderTotal,Status)" +
@@ -108,7 +108,7 @@ public void writeOrder(Order o, String customerUsername)
     
     public ArrayList<Customer> loadCustomers()
     {
-        ArrayList<Customer>allCustomers = new ArrayList();
+        ArrayList<Customer>allCustomers = new ArrayList();// Create a list to hold all customers
         try
         {
           Class.forName(driver); 
@@ -129,7 +129,7 @@ public void writeOrder(Order o, String customerUsername)
               
               // Customer(String usernameIn, String passwordIn, String firstnameIn, String lastnameIn,
             //String addressLine1In, String addressLine2In,String townIn,String postcodeIn)
-              Customer c = new Customer(username, password, 
+              Customer c = new Customer(username, password, // Build a Customer object using the constructor
                       firstName,lastName , addressLine1, addressLine2, town, postcode);
                   allCustomers.add(c);
           }
@@ -146,11 +146,11 @@ public void writeOrder(Order o, String customerUsername)
             
     public ArrayList<Staff> loadStaff()
     {
-        ArrayList<Staff>allStaff = new ArrayList();
+        ArrayList<Staff>allStaff = new ArrayList();  // Create a list to store all staff members
         try
         {
           Class.forName(driver); 
-          Connection conn = DriverManager.getConnection(connectionString);
+          Connection conn = DriverManager.getConnection(connectionString);//connection to the Access database
           Statement stmt = conn.createStatement();
           ResultSet rs = stmt.executeQuery("SELECT*From Staff");
           
@@ -181,13 +181,14 @@ public void writeOrder(Order o, String customerUsername)
     }  
     public Customer customerLogin(String username, String password)
     {
-        ArrayList<Customer> allCustomers = loadCustomers();
+        ArrayList<Customer> allCustomers = loadCustomers();// Load all customers from the database into a list
  
         
-        
+        // Loop through each customer in the list
         for(Customer c: allCustomers)
             
         {
+            // Check if both the username and password match
             if(c.getUsername().equals(username)&&c.getPassword().equals(password))
             {
                 return c;
@@ -197,7 +198,7 @@ public void writeOrder(Order o, String customerUsername)
     }
      public Staff staffLogin(String username, String password)
      {
-         ArrayList<Staff> allStaff = loadStaff();
+         ArrayList<Staff> allStaff = loadStaff(); // Load all staff members from the database into a list
          for(Staff s:allStaff)
          {
              if(s.getUsername().equals(username)&&s.getPassword().equals(password))
@@ -209,14 +210,14 @@ public void writeOrder(Order o, String customerUsername)
      }
      
      public ArrayList<Product> loadProducts(){
-     ArrayList<Product> allProducts = new ArrayList();
+     ArrayList<Product> allProducts = new ArrayList();// Create a list to hold all products loaded from the database
     
     try
     {
         Class.forName(driver);
         Connection conn = DriverManager.getConnection(connectionString);
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Products");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM Products");// get all rows from the Products table
         while(rs.next())
         {
             int productID = rs.getInt("ProductID");
@@ -227,7 +228,7 @@ public void writeOrder(Order o, String customerUsername)
             int wattageOutput = rs.getInt("WattageOutput");
             double efficiencyRating = rs.getDouble("EfficiencyRating");
 
-            //String1.equals(String2) compare 2 strings
+            //String1.equals(String2) compare 2 strings. Decide which subclass to construct
             if(productType.equals("Heat Pump"))
             {
           //        Heatpump(int productIDIn, productNameIn, priceIn, stockLevelIn, productTypeIn, efficiencyRatingIn)

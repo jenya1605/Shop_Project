@@ -6,11 +6,13 @@ package views;
 
 //import models.Customer;
 
+import java.awt.Color;
 import models.Customer;
 import models.DBManager;
 
 //import models.DBManager;
-
+// * Customer_Login is a Swing JFrame that allows a customer to log in,
+// register, or return to the main menu. On successful login it opens Customer_Home.
 /**
  *
  * @author 30471297
@@ -23,6 +25,7 @@ public class Customer_Login extends javax.swing.JFrame {
      * Creates new form CustomerLogin
      */
     public Customer_Login() {
+        getContentPane().setBackground(new Color(153,255,204)); // Set the background colour
         initComponents();
     }
 
@@ -144,15 +147,16 @@ public class Customer_Login extends javax.swing.JFrame {
     mMenu.setVisible(true);
     this.setVisible(false);     
     }//GEN-LAST:event_btnReturnToMainMenuActionPerformed
-
+    //Reads username/password, calls DBManager to authenticate, and if successful,
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     
     String username = txtUsername.getText();
     String password = txtPassword.getText();
     
-    DBManager db = new DBManager();
+    DBManager db = new DBManager();//Interact with the database layer to validate credentials
+
     Customer loggedInCustomer = db.customerLogin(username, password);
-    
+    // Check login result
     if(loggedInCustomer !=null){
         Customer_Home cHome = new Customer_Home(loggedInCustomer);
         cHome.setVisible(true);

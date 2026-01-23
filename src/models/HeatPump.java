@@ -11,6 +11,8 @@ package models;
  */
 public class HeatPump extends Product{
     
+    //HeatPump class inherits from Product adds one new attribute efficiencyRating
+    //represents efficiency percentage
     //Attributes
     private double efficiencyRating;
     

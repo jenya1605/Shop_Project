@@ -13,14 +13,19 @@ import java.util.LinkedList;
  *
  * @author 30471297
  */
+// customer got all the attributes and methods of User
 public class Customer extends User{
     //Attributes
     private String addressLine1;
     private String addressLine2;
     private String town;
     private String postcode;
-    private boolean isRegistered;
+    private boolean isRegistered; // The customer is registered in the system
     private HashMap<Integer, Order> orders;// check if it is 'orders' instead orderLines
+    
+   // Stores a list of card numbers associated with the customer.
+   // Using LinkedList because order might matter 
+
     private LinkedList<Integer>cardNumbers;
     
     public LinkedList<Integer>getCardNumbers()
@@ -101,7 +106,7 @@ public class Customer extends User{
     }
 
     public HashMap <Integer, Order> getOrders() {
-        return orders;                            // 'orders' ??
+        return orders;                            
     }
 
         

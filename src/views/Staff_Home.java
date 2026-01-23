@@ -4,6 +4,7 @@
  */
 package views;
 
+import java.awt.Color;
 import views.MainMenu;
 
 /**
@@ -18,6 +19,7 @@ public class Staff_Home extends javax.swing.JFrame {
      * Creates new form StaffHome
      */
     public Staff_Home() {
+        getContentPane().setBackground(new Color(153,255,204));
         initComponents();
     }
 

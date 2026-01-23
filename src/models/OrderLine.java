@@ -1,3 +1,4 @@
+
 package models;
 
 /*
@@ -6,12 +7,13 @@ package models;
  */
 
 /**
- *
+ * OrderLine is the object that stores all attributes (orderLineId, Product, quantity, lineTotal)
+ * and represents a single line in the order
  * @author 30471297
  */
 public class OrderLine {
     //Attributes
-    private int orderLineId;
+    private int orderLineId;  // Unique identifier for this specific order line
     private Product product;
     private int quantity;
     private double lineTotal;

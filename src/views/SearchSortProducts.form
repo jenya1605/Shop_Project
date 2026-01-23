@@ -79,6 +79,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnBubbleSort">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Bubble Sort"/>
       </Properties>
       <Events>
@@ -94,6 +97,9 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="lstProducts">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="ff" red="cc" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
             </Property>
@@ -106,6 +112,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnSelectionSort">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Selection Sort"/>
       </Properties>
       <Events>
@@ -114,6 +123,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnLinearSearch">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Linear Search"/>
       </Properties>
       <Events>
@@ -122,6 +134,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBinarySearch">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Binary Search"/>
       </Properties>
       <Events>
@@ -130,6 +145,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblProductPrice">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Enter Product Price"/>
       </Properties>
     </Component>

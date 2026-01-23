@@ -4,21 +4,26 @@
  */
 package views;
 
+import java.awt.Color;
 import models.Customer;
 
 /**
  *
  * @author 30471297
  */
+//Confirmation class shows a message saying “Order Placed” and provides a button to return the user to their Customer Home screen
 public class Confirmation extends javax.swing.JFrame {
-    
+    // Logger to record errors or important runtime information
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Confirmation.class.getName());
-    private Customer loggedInCustomer;
+    private Customer loggedInCustomer; // Stores the currently logged-in customer so we can return them to their home screen
     /**
      * Creates new form Confirmation
      */
     public Confirmation(Customer c) {
+
         loggedInCustomer = c;
+        // Change background colour of the window
+        getContentPane().setBackground(new Color(153,255,204));
         initComponents();
     }
 

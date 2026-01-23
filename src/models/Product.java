@@ -10,8 +10,8 @@ package models;
  * @author 30471297
  */
 public class Product {
-    
-    //Attributes
+    //Product class represents a product in a shop
+    //Attributes describing a Product
     
     private int productId;
     private String productName;
@@ -21,6 +21,7 @@ public class Product {
     
     @Override
     //stage 6
+    //Converts the Product object to a String when printed
     public String toString()
     {
       String productOutput = productName + " is " + price;       
@@ -102,6 +103,8 @@ public class Product {
     {
         this.stockLevel = stockLevel;
     }
+    
+    
     
  //   public void setAdditional(String additional)
   //  {

@@ -17,6 +17,11 @@ import models.OrderLine;
  */
 public class Basket extends javax.swing.JFrame {
     
+//It receives a Customer object the logged‑in user
+//receives an Order object the user's shopping basket
+//reads all the OrderLine entries from the order
+//fills the table with the products and quantities
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Basket.class.getName());
     
     private Order currentOrder; // fix import
@@ -28,14 +33,17 @@ public class Basket extends javax.swing.JFrame {
             
     public Basket(Customer c, Order o) // fix import
     {
+        //Save the Customer and Order object passed into the constructor
         loggedInCustomer = c;
         currentOrder = o;
         
         initComponents();
         
         DefaultTableModel productBasketModel = (DefaultTableModel)tblProductBasket.getModel();
-    for(Map.Entry<Integer,OrderLine> olMapEntry : currentOrder.getOrderLines().entrySet())// fix imports
+        // Iterate over order lines and populate the table
+        for(Map.Entry<Integer,OrderLine> olMapEntry : currentOrder.getOrderLines().entrySet())// fix imports
       {
+        // Extract the OrderLine object from the map entry
         OrderLine actualOrderLine = olMapEntry.getValue();//put into the table in a list first
         productBasketModel.addRow(new Object[]
         {
@@ -46,6 +54,7 @@ public class Basket extends javax.swing.JFrame {
                 actualOrderLine.getQuantity()//
                   // create getQuantity() method
         } );
+        // Update the table with the modified model
         tblProductBasket.setModel(productBasketModel);
 
       }
@@ -159,10 +168,13 @@ public class Basket extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentHidden
 
     private void btnBuyProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyProductActionPerformed
+        // Create a new instance of DBManager handles database operations
         DBManager db = new DBManager();//fix imports
+        // Write the current order to the database under the logged-in user username
         db.writeOrder(currentOrder,loggedInCustomer.getUsername());
+        // Navigate to payment method selection, passing the logged-in customer
         SelectPaymentMethod payment = new SelectPaymentMethod (loggedInCustomer);
-        payment.setVisible(true);
+        payment.setVisible(true);// payment window is visible to the user
         this.setVisible(false);   
     }//GEN-LAST:event_btnBuyProductActionPerformed
 
