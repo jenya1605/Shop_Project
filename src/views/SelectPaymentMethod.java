@@ -15,22 +15,25 @@ import models.Customer;
 public class SelectPaymentMethod extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SelectPaymentMethod.class.getName());
-    private Customer loggedInCustomer;
+    private Customer loggedInCustomer; //Holds the currently logged-in customer
     /**
      * Creates new form SelectPaymentMethod
      */
+    //Constructor: receives the logged-in customer and sets up the UI.
     public SelectPaymentMethod(Customer c) {
-        loggedInCustomer = c;
+        loggedInCustomer = c;//save customer reference
         getContentPane().setBackground(new Color(153,255,204));
         initComponents();
     }
         public void show_all_cardNumbers()
     {
         DefaultListModel cardModel = new DefaultListModel();
+        // Loop through card numbers stored in the customer object
         for(int card :loggedInCustomer.getCardNumbers())            
         {
          cardModel.addElement(card);  
         }
+        // Display card numbers in the list
         lstCardNumbers.setModel(cardModel);
     }
 
@@ -188,23 +191,25 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Removes the selected card from the customer's list by index.
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // Ensure user selected a card first
         if (lstCardNumbers.getSelectedIndex() == -1)
         {
             lblConfirmation.setText("Error: Select Card before Deleting");
         }
         else
         {
+            // Remove card by index
             loggedInCustomer.removeCard(lstCardNumbers.getSelectedIndex());
             lblConfirmation.setText("Card removed");
             show_all_cardNumbers();
 
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+    //Adds a new card number typed in txtNewCard into the customer's card list.
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        int NewCard = Integer.parseInt(txtNewCard.getText());
+        int NewCard = Integer.parseInt(txtNewCard.getText());//convert input to int
    
 
         loggedInCustomer.addNewCard(NewCard);
@@ -213,13 +218,13 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
         show_all_cardNumbers();
 
     }//GEN-LAST:event_btnAddActionPerformed
-
+    //Moves user to Confirmation screen, passing the logged-in customer's details.
     private void btnConfirmPaymentMethodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmPaymentMethodActionPerformed
         Confirmation confirm = new Confirmation(loggedInCustomer);
         confirm.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);// hide this window
     }//GEN-LAST:event_btnConfirmPaymentMethodActionPerformed
-
+    // Stores a card number as part of the customer’s card list.
     private void btnAddDefaultAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDefaultAddressActionPerformed
         int newCard = Integer.parseInt(txtDefaultCard.getText());;
 

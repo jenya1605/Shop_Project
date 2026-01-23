@@ -9,6 +9,9 @@ package models;
  *
  * @author 30471297
  */
+//User stores login information username and password and
+//personal information firstname and lastname.
+
 public class User {
    
     //Attributes
@@ -37,7 +40,7 @@ public class User {
          lastname = lastnameIn;
      }
      
-     // Getter methods for all attributes
+     // Getter methods for all attributes. allow controlled write access
 
     public String getUsername()
     {

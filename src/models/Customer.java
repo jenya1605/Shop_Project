@@ -25,7 +25,7 @@ public class Customer extends User{
     
    // Stores a list of card numbers associated with the customer.
    // Using LinkedList because order might matter 
-
+   // Cards methods
     private LinkedList<Integer>cardNumbers;
     
     public LinkedList<Integer>getCardNumbers()

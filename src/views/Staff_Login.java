@@ -12,6 +12,9 @@ import models.Staff;
  *
  * @author 30471297
  */
+// Collects username and password, authenticates against the database via DBManager.staffLogin(),
+//and on success opens the Staff_Home screen, 
+//lets the user return to the Main Menu
 public class Staff_Login extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Staff_Login.class.getName());
@@ -128,14 +131,15 @@ public class Staff_Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Reads credentials, calls DBManager.staffLogin(),
+    //and routes to Staff_Home on success.
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
     String username = txtUsername.getText();
     String password = txtPassword.getText();
     
-    DBManager db = new DBManager();
+    DBManager db = new DBManager();//Authenticate against the database
     Staff loggedInStaff = db.staffLogin(username, password);
-    
+    // Route based on authentication result
     if(loggedInStaff !=null){
         Staff_Home sHome = new Staff_Home();
         sHome.setVisible(true);

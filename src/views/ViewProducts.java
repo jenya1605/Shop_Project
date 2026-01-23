@@ -16,8 +16,12 @@ import models.SolarPanel;
  *
  * @author 30471297
  */
+//Fetch all products once using DBManager.loadProducts(),
+//style the window and initialize components,
+//populate the JList according to the selected category
+
 public class ViewProducts extends javax.swing.JFrame {
-    
+    // Holds all products loaded once from the database
     private final ArrayList<Product> allProducts; // all products from DB 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ViewProducts.class.getName());
 
@@ -26,20 +30,22 @@ public class ViewProducts extends javax.swing.JFrame {
     /**
      * Creates new form ViewProducts
      */
+    //Constructor: loads products from the database,
+    //sets background, and initializes UI
     public ViewProducts() {
-        
+        // Load all products from the database layer
         DBManager db = new DBManager();
         allProducts = db.loadProducts();
-        getContentPane().setBackground(new Color(153,255,204));        
+        getContentPane().setBackground(new Color(153,255,204)); // Set a consistent background colour for the window      
         initComponents();
         
     }
     
-    
+    //Loads products into the list model filtered by the given category.
     private void loadProducts(String category) {
     DefaultListModel model = new DefaultListModel(); // fix imports
 
-    // Loop through all products
+    // Loop through all products and add only those matching the category
     for (Product product : allProducts) {
         if (category.equals("HeatPump")) {
             if (product instanceof HeatPump) {

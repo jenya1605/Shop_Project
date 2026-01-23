@@ -15,14 +15,19 @@ import models.Product;
  *
  * @author 30471297
  */
+//Staff can select a product category (HeatPump or SolarPanel), view the products belonging to the selected category, edit the selected product’s details, 
+//delete a selected product from the database, return to the staff home page 
+
 public class Staff_ProductMenuPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Staff_ProductMenuPage.class.getName());
     
-    private ArrayList<Product> allProducts;
+    private ArrayList<Product> allProducts;// Holds all products loaded from the database
     /**
      * Creates new form Staff_ProductMenuPage
      */
+    
+    //Constructor: loads products, sets background, and initializes UI components
     public Staff_ProductMenuPage() {
         DBManager db = new DBManager();
         allProducts = db.loadProducts();
@@ -73,11 +78,6 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(lstSelectCategory);
 
         lstProduct.setBackground(new java.awt.Color(204, 255, 204));
-        lstProduct.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstProductValueChanged(evt);
-            }
-        });
         jScrollPane2.setViewportView(lstProduct);
 
         btnEditProduct.setBackground(new java.awt.Color(255, 255, 204));
@@ -186,6 +186,7 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         
         if(lstProduct.getSelectedIndex() != -1)
         {
+        // Get the selected Product object from the list
         Object selectedProductObject = (Object)lstProduct.getSelectedValue();
         Product selectedProduct = (Product)selectedProductObject;
             
@@ -199,27 +200,13 @@ public class Staff_ProductMenuPage extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_btnEditProductActionPerformed
 
-    private void lstProductValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstProductValueChanged
-//    String selectedCategory = lstProduct.getSelectedValue();
-//        
-//        DefaultListModel ProductModel = new DefaultListModel();
-//        
-//        for(Product a : allProducts)
-//        {
-//            //package.class
-//            if(a.getClass().getName().equals("models." + selectedCategory))
-//            {
-//               ProductModel.addElement(a); 
-//            }
-//        }
-//        lstProduct.setModel(ProductModel);
-    }//GEN-LAST:event_lstProductValueChanged
-
     private void lstSelectCategoryValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstSelectCategoryValueChanged
     String selectedCategory = lstSelectCategory.getSelectedValue();
         
         DefaultListModel categoryModel = new DefaultListModel();
         
+        // Filter by comparing class name to "models.<Category>"
+
         for(Product p : allProducts)
         {
             //package.class
