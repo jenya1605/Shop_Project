@@ -57,7 +57,7 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
         btnConfirmPaymentMethod = new javax.swing.JButton();
         lblDefaultCard = new javax.swing.JLabel();
         txtDefaultCard = new javax.swing.JTextField();
-        btnAddDefaultAddress = new javax.swing.JButton();
+        btnAddDefaultCard = new javax.swing.JButton();
         btnDeleteSelecterdCard = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -100,11 +100,11 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
         lblDefaultCard.setBackground(new java.awt.Color(255, 255, 204));
         lblDefaultCard.setText("Default Payment Method");
 
-        btnAddDefaultAddress.setBackground(new java.awt.Color(255, 255, 204));
-        btnAddDefaultAddress.setText("ADD");
-        btnAddDefaultAddress.addActionListener(new java.awt.event.ActionListener() {
+        btnAddDefaultCard.setBackground(new java.awt.Color(255, 255, 204));
+        btnAddDefaultCard.setText("ADD");
+        btnAddDefaultCard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddDefaultAddressActionPerformed(evt);
+                btnAddDefaultCardActionPerformed(evt);
             }
         });
 
@@ -140,7 +140,7 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
                         .addGap(51, 51, 51))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAddDefaultAddress)
+                            .addComponent(btnAddDefaultCard)
                             .addComponent(btnDeleteSelecterdCard, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
@@ -173,7 +173,7 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtDefaultCard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(btnAddDefaultAddress)
+                .addComponent(btnAddDefaultCard)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -211,8 +211,8 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         int NewCard = Integer.parseInt(txtNewCard.getText());//convert input to int
    
-
-        loggedInCustomer.addNewCard(NewCard);
+        loggedInCustomer.addNewCard(NewCard); // add card
+       
         lblConfirmation.setText("New Card Added");
 
         show_all_cardNumbers();
@@ -225,20 +225,18 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
         this.setVisible(false);// hide this window
     }//GEN-LAST:event_btnConfirmPaymentMethodActionPerformed
     // Stores a card number as part of the customer’s card list.
-    private void btnAddDefaultAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDefaultAddressActionPerformed
-        int newCard = Integer.parseInt(txtDefaultCard.getText());;
-
-
-        loggedInCustomer.addNewCard(newCard);
+    private void btnAddDefaultCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDefaultCardActionPerformed
+        int newCard = Integer.parseInt(txtDefaultCard.getText());
+        // add card to the beginning of the LinkedList
+        loggedInCustomer.addFirstCard(newCard);
         lblConfirmation.setText("New Card Added");
 
         show_all_cardNumbers();
-    }//GEN-LAST:event_btnAddDefaultAddressActionPerformed
+    }//GEN-LAST:event_btnAddDefaultCardActionPerformed
 
     private void btnDeleteSelecterdCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSelecterdCardActionPerformed
-    int newCard = Integer.parseInt(txtDefaultCard.getText());;
-
-
+    int newCard = Integer.parseInt(txtDefaultCard.getText());
+    
     loggedInCustomer.addNewCard(newCard);
     lblConfirmation.setText("New Card Added");
 
@@ -272,7 +270,7 @@ public class SelectPaymentMethod extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAddDefaultAddress;
+    private javax.swing.JButton btnAddDefaultCard;
     private javax.swing.JButton btnConfirmPaymentMethod;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeleteSelecterdCard;
